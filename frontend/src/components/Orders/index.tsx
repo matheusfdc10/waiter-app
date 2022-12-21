@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import socketIo from 'socket.io-client';
 import { Container } from "./styles";
 import { OrdersBoard } from "../OrdersBoard";
@@ -15,7 +16,10 @@ export function Orders() {
     })
     
     socket.on('orders@new', (order) => {
-        setOrders(prevState => prevState.concat(order))
+        setOrders(prevState => prevState.concat(order)),
+        toast.success(
+          `Novo pedido feito!`
+        );
     })
   }, [])
 
